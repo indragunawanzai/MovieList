@@ -12,18 +12,20 @@ const detailMovie = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true,
+                errors: false,
             }
         case detailMovies.GETDETAILMOVIE_SUCCESS:
             return {
                 ...state,
                 loading: false,
+                errors: false,
                 movieDetail: action.payload,
             }
         case detailMovies.GETDETAILMOVIE_FAILED:
             return {
                 ...state,
                 loading: false,
-                errors: action.payload
+                errors: true,
             }
         default:
             return state

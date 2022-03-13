@@ -25,17 +25,17 @@ const HomeScreen = ({ navigation }) => {
     useFocusEffect(
         useCallback(() => {
             dispatch(getDataListMovie())
-        }, [])
+        }, [detailMovie?.errors])
     )
 
     const renderItem = ({ item }) => (
         <TouchableOpacity
             onPress={() => {
                 dispatch(getDataDetailMovie(item?.id))
-                if (detailMovie.errors === false) {
+                if (String(item?.id).length < 7) {
                     navigation.navigate('DetailMovie', {})
                 } else {
-                    console.log(detailMovie?.movieDetail)
+                    alert("Data Kosong")
                 }
             }}
         >
@@ -75,6 +75,7 @@ const HomeScreen = ({ navigation }) => {
             </View>
         </TouchableOpacity>
     );
+
     return (
         <View style={styles.pages}>
             <View style={{marginTop: 15}}>
